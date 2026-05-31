@@ -83,10 +83,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_histories[user_id].append({"role": "assistant", "content": reply})
         await update.message.reply_text(reply)
 
-    except Exception as e:
-        logging.error(f"Error calling Claude API: {e}")
+  except Exception as e:
+        logging.error(f"Error calling Claude API: {type(e).__name__}: {e}")
         await update.message.reply_text(
-            "⚠️ Sorry, I ran into an issue. Please try again in a moment."
+            f"⚠️ Error: {type(e).__name__}: {str(e)[:200]}"
         )
 
 
